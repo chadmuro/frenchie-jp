@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
 import AppBar from '@material-ui/core/Appbar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -7,10 +8,15 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles(() => ({
 	root: {
-		flexGrow: 1,
-    },
+		flexGrow: 1
+	},
+	link: {
+		textDecoration: 'none'
+	},
     title: {
-        flexGrow: 1
+		flexGrow: 1,
+		textDecoration: 'none',
+		color: '#fff'
     }
 }));
 
@@ -21,13 +27,27 @@ const Header = () => {
 		<div className={classes.root}>
 			<AppBar position="static">
 				<Toolbar>
-					<Typography variant="h6" className={classes.title}>frenchie-JP</Typography>
-					<Button>Home</Button>
-					<Button>Events</Button>
-					<Button>Members</Button>
-					<Button>Photos</Button>
-					<Button>Discussion</Button>
-					<Button variant="outlined" color="secondary">Sign In</Button>
+					<Link to="/" className={classes.title}>
+						<Typography variant="h6">frenchie-JP</Typography>
+					</Link>
+					<Link to="/" className={classes.link}>
+						<Button>Home</Button>
+					</Link>
+					<Link to="/events" className={classes.link}>
+						<Button>Events</Button>
+					</Link>
+					<Link to="/photos" className={classes.link}>
+						<Button>Photos</Button>
+					</Link>
+					<Link to="/discussion" className={classes.link}>
+						<Button>Discussion</Button>
+					</Link>
+					<Link to="/contact" className={classes.link}>
+						<Button>Contact</Button>
+					</Link>
+					<Button variant="contained" color="secondary">
+						Sign In
+					</Button>
 				</Toolbar>
 			</AppBar>
 		</div>
