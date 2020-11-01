@@ -1,15 +1,15 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core';
-import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import About from './About';
 
 import heroImage from '../img/frenchie-hero.jpg';
 
 const useStyles = makeStyles(() => ({
 	gutterBottom: {
-		marginBottom: '2.5rem'
+		marginBottom: '2.5rem',
 	},
 	hero: {
 		backgroundImage: `linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url(${heroImage})`,
@@ -17,16 +17,16 @@ const useStyles = makeStyles(() => ({
 		backgroundPosition: 'center',
 		backgroundSize: 'cover',
 		position: 'relative',
-        display: 'flex',
-        flexDirection: 'column',
+		display: 'flex',
+		flexDirection: 'column',
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
 	aboutContainer: {
-		paddingTop: '5rem'
+		paddingTop: '5rem',
 	},
 	text: {
-        color: '#fff',
+		color: '#fff',
 	},
 }));
 
@@ -47,16 +47,11 @@ const Hero = () => {
 				>
 					Tokyo French Bulldog Meetup
 				</Typography>
-				<Button variant="contained" color="secondary" size="large">
+				<Button variant="contained" color="primary" size="large">
 					Upcoming Events
 				</Button>
 			</Box>
-			<Container maxWidth="lg" className={classes.aboutContainer}>
-				<Typography variant="h3" align="center">
-					About
-				</Typography>
-
-			</Container>
+			<About />
 		</div>
 	);
 };
