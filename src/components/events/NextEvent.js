@@ -38,14 +38,14 @@ const NextEvent = () => {
 		<Container maxWidth="md">
 			<Grid item xs={12} className={classes.title}>
 				<Typography variant="h3" align="center">
-					Next Event
+					Upcoming Event
 				</Typography>
 			</Grid>
 			<Card className={classes.card}>
 				<Grid container>
 					<Grid item xs={12} sm={8}>
 						<CardContent className={classes.content}>
-							<Typography variant="h6">SUN, JAN 1, 11:00AM</Typography>
+							<Typography variant="h6">SUN, JAN 1 2021, 11:00AM</Typography>
 							<Typography variant="h4" className={classes.name}>
 								January 2021 Meetup. Test for a long title
 							</Typography>

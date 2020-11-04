@@ -1,10 +1,12 @@
 import React from 'react';
 import NextEvent from './events/NextEvent';
+import PastEvents from './events/PastEvents';
 
 const Events = () => {
 	return (
-		<div style={{ height: '100vh' }}>
+		<div>
 			<NextEvent />
+			<PastEvents />
 		</div>
 	);
 };

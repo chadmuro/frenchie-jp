@@ -57,7 +57,7 @@ const Subscribe = () => {
 							name="subscribe"
 							id="mc-embedded-subscribe"
 							variant="outlined"
-							color="primary"
+							color="secondary"
 							className={classes.button}
 						>
 							Subscribe!

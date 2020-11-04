@@ -23,6 +23,7 @@ const useStyles = makeStyles(() => ({
 	},
 	text: {
 		color: '#fff',
+		textAlign: 'center'
 	},
 }));
 
