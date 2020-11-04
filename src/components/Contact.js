@@ -1,19 +1,14 @@
 import React from 'react';
-import { TextField, Button } from '@material-ui/core';
+import Subscribe from './contactInfo/Subscribe';
+import About from './contactInfo/About';
 
 const Contact = () => {
-	return (
-		<>
-		<TextField
-			id="outlined-email-input"
-			label="Email"
-			type="email"
-			name="email"
-			autoComplete="email"
-			variant="outlined"
-		/>
-		</>
-	);
-};
+    return (
+        <div>
+            <Subscribe />
+            <About />    
+        </div>
+    );
+}
 
 export default Contact;

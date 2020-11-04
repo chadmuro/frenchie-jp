@@ -77,7 +77,6 @@ const NextEvent = () => {
 						<Button
 							variant="contained"
 							color="secondary"
-							size="small"
 							className={classes.button}
 						>
 							Join Event

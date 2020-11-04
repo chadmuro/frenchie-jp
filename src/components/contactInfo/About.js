@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Grid, Card, Typography, CardMedia, CardContent } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import ipu from '../img/ipu.jpg';
+import ipu from '../../img/ipu.jpg';
 
 const useStyles = makeStyles((theme) => ({
 	title: {
