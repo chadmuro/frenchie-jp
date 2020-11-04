@@ -1,9 +1,8 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+import { Box, Typography, Button } from '@material-ui/core';
 import About from './About';
+import NextEvent from './events/NextEvent';
 
 import heroImage from '../img/frenchie-hero.jpg';
 
@@ -47,11 +46,12 @@ const Hero = () => {
 				>
 					Tokyo French Bulldog Meetup
 				</Typography>
-				<Button variant="contained" color="primary" size="large">
+				<Button variant="contained" color="secondary" size="large">
 					Upcoming Events
 				</Button>
 			</Box>
 			<About />
+			<NextEvent />
 		</div>
 	);
 };

@@ -1,10 +1,14 @@
 import React from 'react';
-import { Grid, Card, Typography, CardMedia, CardContent, makeStyles } from '@material-ui/core';
+import { Container, Grid, Card, Typography, CardMedia, CardContent } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import ipu from '../img/ipu.jpg';
 
 const useStyles = makeStyles((theme) => ({
-	aboutContainer: {
-		paddingTop: '5rem',
+	title: {
+		paddingTop: '6rem',
+	},
+	main: {
+		marginTop: '3rem'
 	},
 	about: {
 		display: 'flex',
@@ -26,27 +30,27 @@ const About = () => {
     const classes = useStyles();
 
 	return (
-		<Grid container className={classes.aboutContainer}>
-			<Grid item xs={12}>
+		<Container maxWidth="lg">
+			<Grid item xs={12} className={classes.title}>
 				<Typography variant="h3" align="center">
 					About
 				</Typography>
 			</Grid>
-			<Grid xs={0} sm={1} />
-			<Grid item xs={12} sm={10} className={classes.aboutContainer}>
-				<Card className={classes.about}>
-					<CardMedia
-						className={classes.media}
-						image={ipu}
-						title="Ipu Frenchie"
-					/>
-					<CardContent>
-						<Typography align="center">Hi my name is Chad!</Typography>
-					</CardContent>
-				</Card>
+			<Grid container>
+				<Grid item xs={12} className={classes.main}>
+					<Card className={classes.about}>
+						<CardMedia
+							className={classes.media}
+							image={ipu}
+							title="Ipu Frenchie"
+						/>
+						<CardContent>
+							<Typography align="center">Hi my name is Chad!</Typography>
+						</CardContent>
+					</Card>
+				</Grid>
 			</Grid>
-			<Grid xs={0} sm={1} />
-		</Grid>
+		</Container>
 	);
 };
 

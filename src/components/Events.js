@@ -1,7 +1,8 @@
 import React from 'react';
+import NextEvent from './events/NextEvent';
 
 const Events = () => {
-	return <div>Events</div>;
+	return <div><NextEvent /></div>;
 };
 
 export default Events;
