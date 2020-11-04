@@ -1,55 +1,48 @@
 import React from 'react';
-import { Container, Grid, Card, Typography, CardMedia, CardContent } from '@material-ui/core';
+import {
+	Container,
+	Grid,
+	Card,
+	Typography,
+	CardMedia,
+	CardContent,
+} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import ipu from '../../img/ipu.jpg';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
 	title: {
 		paddingTop: '6rem',
+		paddingBottom: '3rem',
 	},
-	main: {
-		marginTop: '3rem'
-	},
-	about: {
-		display: 'flex',
-		[theme.breakpoints.down('xs')]: {
-			flexDirection: 'column',
-		},
-	},
-	media: {
-		width: '300px',
-		height: '400px',
-		[theme.breakpoints.down('xs')]: {
-            width: '100%',
-            height: '300px'
-		},
-	},
+	image: {
+		height: '300px'
+	}
 }));
 
 const About = () => {
-    const classes = useStyles();
+	const classes = useStyles();
 
 	return (
-		<Container maxWidth="lg">
-			<Grid item xs={12} className={classes.title}>
-				<Typography variant="h3" align="center">
-					About
-				</Typography>
-			</Grid>
-			<Grid container>
-				<Grid item xs={12} className={classes.main}>
-					<Card className={classes.about}>
-						<CardMedia
-							className={classes.media}
-							image={ipu}
-							title="Ipu Frenchie"
-						/>
+		<Container maxWidth="md">
+			<Typography variant="h3" align="center" className={classes.title}>
+				About Us
+			</Typography>
+			<Card>
+				<Grid container>
+					<Grid item xs={12} sm={4}>
+						<CardMedia image={ipu} title="Ipu Frenchie" className={classes.image}/>
+					</Grid>
+					<Grid item xs={12} sm={8}>
 						<CardContent>
-							<Typography align="center">Hi my name is Chad!</Typography>
+							<Typography align="center">
+								We are a community of French Bulldogs and owners in Tokyo, Japan. 
+								Japanese or English speaking is okay. Come join us!
+							</Typography>
 						</CardContent>
-					</Card>
+					</Grid>
 				</Grid>
-			</Grid>
+			</Card>
 		</Container>
 	);
 };

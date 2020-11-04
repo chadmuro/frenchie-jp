@@ -21,9 +21,6 @@ const useStyles = makeStyles(() => ({
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
-	aboutContainer: {
-		paddingTop: '5rem',
-	},
 	text: {
 		color: '#fff',
 	},

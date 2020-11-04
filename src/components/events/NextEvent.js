@@ -79,7 +79,7 @@ const NextEvent = () => {
 							color="secondary"
 							className={classes.button}
 						>
-							Join Event
+							View Event Details
 						</Button>
 					</Grid>
 				</Grid>
