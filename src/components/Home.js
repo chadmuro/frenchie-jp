@@ -36,7 +36,7 @@ const Hero = () => {
 		<div>
 			<Box className={classes.hero}>
 				<Typography className={classes.text} variant="h1">
-					frenchie-JP
+					Tokyo Frenchies
 				</Typography>
 				<Typography
 					className={classes.text}
