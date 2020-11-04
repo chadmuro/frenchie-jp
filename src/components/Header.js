@@ -6,9 +6,6 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import MenuIcon from '@material-ui/icons/Menu';
 
 const useStyles = makeStyles(() => ({
-	root: {
-		flexGrow: 1
-	},
 	link: {
 		textDecoration: 'none',
 		color: '#220A03'
@@ -37,7 +34,7 @@ const Header = () => {
 	};
 
 	return (
-		<div className={classes.root}>
+		<div>
 			<AppBar position="sticky">
 				<Toolbar>
 					<Link to="/" className={classes.title}>

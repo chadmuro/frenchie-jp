@@ -13,8 +13,8 @@ const useStyles = makeStyles(() => ({
 	container: {
 		height: '100vh',
 		display: 'flex',
-		flexDirection: 'column'
-	}
+		flexDirection: 'column',
+	},
 }))
 
 const App = () => {
@@ -26,7 +26,7 @@ const App = () => {
 					<Header />
 					<Route path="/" exact component={Home} />
 					<Route path="/events" exact component={Events} />
-					<Route path="/photos" exact component={Photos}/>
+					<Route path="/photos" exact component={Photos} className={classes.main} />
 					<Route path="/discussion" exact component={Discussion} />
 					<Route path="/contact" exact component={Contact} />
 					<Footer />

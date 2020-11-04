@@ -17,7 +17,7 @@ const PastEvents = () => {
 				<Typography variant="h3" align="center" className={classes.title}>
 					Past Events
 				</Typography>
-				<Grid container spacing={2}>
+				<Grid container spacing={3}>
 					<PastEventCard />
 					<PastEventCard />
 					<PastEventCard />

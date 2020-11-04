@@ -10,6 +10,9 @@ const useStyles = makeStyles(() => ({
 	gutterBottom: {
 		marginBottom: '2.5rem',
 	},
+	main: {
+		flexGrow: '1'
+	},
 	hero: {
 		backgroundImage: `linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url(${heroImage})`,
 		height: '500px',
@@ -31,7 +34,7 @@ const Hero = () => {
 	const classes = useStyles();
 
 	return (
-		<div>
+		<div className={classes.main}>
 			<Box className={classes.hero}>
 				<Typography className={classes.text} variant="h1">
 					Tokyo Frenchies
