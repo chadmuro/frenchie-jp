@@ -48,7 +48,7 @@ const Hero = () => {
 					Tokyo French Bulldog Meetup
 				</Typography>
 				<Button variant="contained" color="secondary" size="large">
-					Upcoming Events
+					View Events
 				</Button>
 			</Box>
 			<NextEvent />

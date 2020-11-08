@@ -1,11 +1,12 @@
 import React from 'react';
-import { Container, Grid, Typography, Card, CardContent, CardMedia, Button, Link } from '@material-ui/core';
+import { Link } from 'react-router-dom';
+import { Container, Grid, Typography, Card, CardContent, CardMedia, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
 	title: {
-		paddingTop: '6rem',
+		paddingTop: '5rem',
     },
     card: {
         marginTop: '3rem'
@@ -28,8 +29,12 @@ const useStyles = makeStyles(() => ({
         padding: '1rem',
     },
     button: {
-        marginTop: '1rem'
-    }
+		marginTop: '1rem',
+	},
+	link: {
+		textDecoration: 'none',
+		color: theme.palette.text.primary
+	}
 }));
 
 const NextEvent = () => {
@@ -51,7 +56,7 @@ const NextEvent = () => {
 							</Typography>
 							<Typography variant="h6">
 								<LocationOnIcon />
-								<Link href="#" color="secondary">Yoyogi Park</Link>
+								<Button href="#" color="secondary">Yoyogi Park</Button>
 							</Typography>
 						</CardContent>
 					</Grid>
@@ -79,7 +84,7 @@ const NextEvent = () => {
 							color="secondary"
 							className={classes.button}
 						>
-							View Event Details
+							<Link to={'/events/1'} className={classes.link}>View Event Details</Link>
 						</Button>
 					</Grid>
 				</Grid>

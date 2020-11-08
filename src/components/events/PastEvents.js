@@ -5,7 +5,7 @@ import PastEventCard from './PastEventCard';
 
 const useStyles = makeStyles(() => ({
     title: {
-        paddingTop: '6rem'
+        paddingTop: '5rem'
     }
 }))
 

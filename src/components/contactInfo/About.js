@@ -12,7 +12,7 @@ import ipu from '../../img/ipu.jpg';
 
 const useStyles = makeStyles(() => ({
 	title: {
-		paddingTop: '6rem',
+		paddingTop: '5rem',
 		paddingBottom: '3rem',
 	},
 	image: {

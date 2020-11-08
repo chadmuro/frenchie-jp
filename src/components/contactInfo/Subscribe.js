@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/styles';
 const useStyles = makeStyles(() => ({
 	subscribeForm: {
 		textAlign: 'center',
-		paddingTop: '6rem'
+		paddingTop: '5rem'
 	},
 	input: {
 		width: '300px'

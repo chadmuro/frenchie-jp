@@ -4,19 +4,19 @@ import Subscribe from './contactInfo/Subscribe';
 import About from './contactInfo/About';
 
 const useStyles = makeStyles(() => ({
-    main: {
-        flexGrow: '1'
-    }
-}))
+	main: {
+		flexGrow: '1',
+	},
+}));
 
 const Contact = () => {
-    const classes = useStyles();
-    return (
-        <div className={classes.main}>
-            <Subscribe />
-            <About />    
-        </div>
-    );
-}
+	const classes = useStyles();
+	return (
+		<div className={classes.main}>
+			<About />
+			<Subscribe />
+		</div>
+	);
+};
 
 export default Contact;

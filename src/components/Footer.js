@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: '1rem'
+        marginTop: '2rem'
     }
 }))
 
@@ -20,7 +20,7 @@ const Footer = () => {
 
     return (
         <div className={classes.footer}>
-            <Typography>&copy; 2020 Chad Murobayashi
+            <Typography>Tokyo Frenchies &copy; 2020 Chad Murobayashi
             </Typography>
         </div>
     )
