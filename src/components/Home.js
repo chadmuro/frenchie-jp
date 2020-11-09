@@ -6,7 +6,7 @@ import Subscribe from './contactInfo/Subscribe';
 
 import heroImage from '../img/frenchie-hero.jpg';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles({
 	gutterBottom: {
 		marginBottom: '2.5rem',
 	},
@@ -28,7 +28,7 @@ const useStyles = makeStyles(() => ({
 		color: '#fff',
 		textAlign: 'center'
 	},
-}));
+});
 
 const Hero = () => {
 	const classes = useStyles();

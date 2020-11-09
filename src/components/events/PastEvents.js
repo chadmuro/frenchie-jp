@@ -3,11 +3,11 @@ import { Grid, Typography, Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import PastEventCard from './PastEventCard';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles({
     title: {
         paddingTop: '5rem'
     }
-}))
+});
 
 const PastEvents = () => {
     const classes = useStyles();

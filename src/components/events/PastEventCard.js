@@ -2,12 +2,12 @@ import React from 'react';
 import { Grid, Typography, Button, Card } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles({
     eventCard: {
         textAlign: 'center',
         marginTop: '3rem'
     }
-}))
+});
 
 const PastEventCard = () => {
     const classes = useStyles();

@@ -2,11 +2,11 @@ import React from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Container, Typography } from '@material-ui/core';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles({
 	main: {
 		flexGrow: '1',
 	},
-}));
+});
 
 
 const Event = () => {

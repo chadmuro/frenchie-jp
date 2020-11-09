@@ -10,7 +10,7 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 import ipu from '../../img/ipu.jpg';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles({
 	title: {
 		paddingTop: '5rem',
 		paddingBottom: '3rem',
@@ -18,7 +18,7 @@ const useStyles = makeStyles(() => ({
 	image: {
 		height: '300px'
 	}
-}));
+});
 
 const About = () => {
 	const classes = useStyles();

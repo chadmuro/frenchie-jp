@@ -10,13 +10,13 @@ import Discussion from './Discussion';
 import Contact from './Contact';
 import Footer from './Footer';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles({
 	container: {
 		height: '100vh',
 		display: 'flex',
 		flexDirection: 'column',
 	},
-}))
+});
 
 const App = () => {
 	const classes = useStyles();

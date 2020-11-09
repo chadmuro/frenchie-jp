@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { TextField, Button, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles({
 	subscribeForm: {
 		textAlign: 'center',
 		paddingTop: '5rem'
@@ -13,7 +13,7 @@ const useStyles = makeStyles(() => ({
 	button: {
 		marginTop: '1rem'
 	}
-}));
+});
 
 const Subscribe = () => {
 	const [email, setEmail] = useState('');

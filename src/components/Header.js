@@ -5,7 +5,7 @@ import { AppBar, Toolbar, Button, Typography, IconButton, Menu, MenuItem } from 
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import MenuIcon from '@material-ui/icons/Menu';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles({
 	link: {
 		textDecoration: 'none',
 		color: '#220A03'
@@ -15,7 +15,7 @@ const useStyles = makeStyles(() => ({
 		textDecoration: 'none',
 		color: '#fff'
     }
-}));
+});
 
 const Header = () => {
 	const classes = useStyles();
