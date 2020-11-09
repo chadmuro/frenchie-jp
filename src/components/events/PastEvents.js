@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid, Typography, Container, Card, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/styles';
-import useFirestore from '../../hooks/useFirestore';
+import { useFirestore } from '../../hooks/useFirestore';
 
 const useStyles = makeStyles((theme) => ({
 	title: {
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 
 const PastEvents = () => {
 	const classes = useStyles();
-	const { docs } = useFirestore('events', 'eventId');
+	const { docs } = useFirestore('events', 'createdAt');
 
 	return (
 		<Container>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { GridList, GridListTile, makeStyles, useMediaQuery, useTheme } from '@material-ui/core';
-import useFirestore from '../../hooks/useFirestore';
+import { useFirestore } from '../../hooks/useFirestore';
 
 const useStyles = makeStyles({
 	gridList: {

@@ -11,17 +11,9 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
-import useFirestore from '../../hooks/useFirestore';
+import { useFirestore } from '../../hooks/useFirestore';
 
 const useStyles = makeStyles((theme) => ({
-	container: {
-		position: 'relative'
-	},
-	newButton: {
-		position: 'absolute',
-		top: 20,
-		right: 20,
-	},
 	title: {
 		paddingTop: '5rem',
 	},
@@ -63,8 +55,7 @@ const NextEvent = () => {
 
 	if (event) {
 		return (
-			<Container maxWidth="md" className={classes.container}>
-				<Button variant="outlined" color="secondary" className={classes.newButton}>New Event</Button>
+			<Container maxWidth="md">
 				<Grid item xs={12} className={classes.title}>
 					<Typography variant="h3" align="center">
 						Upcoming Event

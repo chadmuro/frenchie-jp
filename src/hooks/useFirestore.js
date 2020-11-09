@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { projectFirestore } from '../firebase/config';
+import { projectFirestore, timestamp } from '../firebase/config';
 
-const useFirestore = (collection, order) => {
+export const useFirestore = (collection, order) => {
 	const [docs, setDocs] = useState([]);
 
 	useEffect(() => {
@@ -21,4 +21,15 @@ const useFirestore = (collection, order) => {
 	return { docs };
 };
 
-export default useFirestore;
+export const postFirestoreEvent = (collection, obj) => {
+	projectFirestore.collection(collection).add({
+		...obj, 
+		joiners: 0,
+		next: true,
+		createdAt: timestamp()
+	}).then(() => {
+		console.log('event submitted!');
+	}).catch(err => {
+		console.log(err.message);
+	});
+}
