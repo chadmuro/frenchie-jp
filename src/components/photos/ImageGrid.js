@@ -10,7 +10,7 @@ const useStyles = makeStyles({
 
 const ImageGrid = () => {
 	const classes = useStyles();
-    const { docs } = useFirestore('images');
+    const { docs } = useFirestore('images', 'createdAt');
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
 
