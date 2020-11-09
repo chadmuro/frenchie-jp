@@ -20,7 +20,7 @@ const useStyles = makeStyles({
 const Header = () => {
 	const classes = useStyles();
 	const theme = useTheme();
-	const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
+	const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 	const [anchorEl, setAnchorEl] = useState(null);
 	const open = Boolean(anchorEl);
 
@@ -109,9 +109,9 @@ const Header = () => {
 								<Link to="/contact" className={classes.link}>
 									<Button>Contact</Button>
 								</Link>
-								{/* <Button variant="contained" color="secondary">
+								<Button variant="contained" color="secondary">
 									Sign In
-								</Button> */}
+								</Button>
 							</>
 						)}
 					</div>
