@@ -70,7 +70,7 @@ const NewEventModal = ({ open, setOpen }) => {
 						<CloseIcon />
 					</IconButton>
 					<Typography variant="h4">Create New Event</Typography>
-					<form component="form" className={classes.form} onSubmit={formSubmit}>
+					<form className={classes.form} onSubmit={formSubmit}>
 						<TextField
 							id="name"
 							label="Event Name"

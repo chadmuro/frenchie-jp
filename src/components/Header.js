@@ -4,6 +4,9 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { AppBar, Toolbar, Button, Typography, IconButton, Menu, MenuItem } from '@material-ui/core';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import MenuIcon from '@material-ui/icons/Menu';
+import SignUpModal from './users/SignUpModal';
+import LoginModal from './users/LoginModal';
+import { authLogout } from '../hooks/useAuth';
 
 const useStyles = makeStyles({
 	link: {
@@ -17,13 +20,14 @@ const useStyles = makeStyles({
     }
 });
 
-const Header = () => {
+const Header = ({ isLoggedIn, setIsLoggedIn }) => {
 	const classes = useStyles();
 	const theme = useTheme();
 	const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 	const [anchorEl, setAnchorEl] = useState(null);
 	const open = Boolean(anchorEl);
-
+	const [openSignUp, setOpenSignUp] = useState(false);
+	const [openLogin, setOpenLogin] = useState(false);
 
 	const handleMenu = (event) => {
 		setAnchorEl(event.currentTarget);
@@ -32,6 +36,21 @@ const Header = () => {
 	const handleClose = () => {
 		setAnchorEl(null);
 	};
+
+	const openSignUpModal = () => {
+		setOpenSignUp(!openSignUp);
+		handleClose();
+	};
+
+	const openLoginModal = () => {
+		setOpenLogin(!openLogin);
+		handleClose();
+	};
+
+	const handleLogout = () => {
+		authLogout();
+		handleClose();
+	}
 
 	return (
 		<div>
@@ -65,6 +84,24 @@ const Header = () => {
 									open={open}
 									onClose={handleClose}
 								>
+									{!isLoggedIn && (
+										<>
+											<SignUpModal open={openSignUp} setOpen={setOpenSignUp} />
+											<MenuItem onClick={openSignUpModal}>Sign Up</MenuItem>
+
+											<LoginModal open={openLogin} setOpen={setOpenLogin} />
+											<MenuItem onClick={openLoginModal}>Login</MenuItem>
+										</>
+									)}
+									{isLoggedIn && (
+										<MenuItem
+											variant="contained"
+											color="secondary"
+											onClick={handleLogout}
+										>
+											Logout
+										</MenuItem>
+									)}
 									<MenuItem onClick={handleClose}>
 										<Link to="/" className={classes.link}>
 											Home
@@ -109,15 +146,36 @@ const Header = () => {
 								<Link to="/contact" className={classes.link}>
 									<Button>Contact</Button>
 								</Link>
-								<Button variant="contained" color="secondary">
-									Sign Up
-								</Button>
-								<Button variant="contained" color="secondary">
-									Login
-								</Button>
-								<Button variant="contained" color="secondary">
-									Logout
-								</Button>
+								{!isLoggedIn && (
+									<>
+										<SignUpModal open={openSignUp} setOpen={setOpenSignUp} />
+										<Button
+											variant="contained"
+											color="secondary"
+											onClick={openSignUpModal}
+										>
+											Sign Up
+										</Button>
+
+										<LoginModal open={openLogin} setOpen={setOpenLogin} />
+										<Button
+											variant="contained"
+											color="secondary"
+											onClick={openLoginModal}
+										>
+											Login
+										</Button>
+									</>
+								)}
+								{isLoggedIn && (
+									<Button
+										variant="contained"
+										color="secondary"
+										onClick={authLogout}
+									>
+										Logout
+									</Button>
+								)}
 							</>
 						)}
 					</div>

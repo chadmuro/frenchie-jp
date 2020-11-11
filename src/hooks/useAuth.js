@@ -1,17 +1,14 @@
 import { auth } from '../firebase/config';
 
-export const authSignup = (email, password) => {
-	auth.createUserWithEmailAndPassword(email, password).then(cred => {
-		console.log(cred.user);
-	});
+export const authSignUp = (email, password) => {
+	return auth.createUserWithEmailAndPassword(email, password);
 };
 
 export const authLogout = () => {
+	console.log('user logged out');
 	auth.signOut();
 };
 
 export const authLogin = (email, password) => {
-	auth.signInWithEmailAndPassword(email, password).then(cred => {
-		console.log(cred.user);
-	});
+	return auth.signInWithEmailAndPassword(email, password);
 };
