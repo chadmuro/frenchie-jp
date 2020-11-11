@@ -28,12 +28,16 @@ const useStyles = makeStyles({
 	},
 	button: {
 		marginTop: '1rem',
-	},
+    },
+    error: {
+        marginTop: '1rem'
+    }
 });
 
 const LoginModal = ({ open, setOpen }) => {
 	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
 	const classes = useStyles();
 
 	const formSubmit = e => {
@@ -42,7 +46,8 @@ const LoginModal = ({ open, setOpen }) => {
             setEmail('');
             setPassword('');
             setOpen(!open);
-        });
+            setError('');
+        }).catch(error => setError(error.message));
 	};
 
 	return (
@@ -86,6 +91,7 @@ const LoginModal = ({ open, setOpen }) => {
 						>
 							Login
 						</Button>
+                        <Typography color="error" className={classes.error}>{error}</Typography>
 					</form>
 				</div>
 			</Fade>

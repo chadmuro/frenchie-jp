@@ -5,7 +5,6 @@ export const authSignUp = (email, password) => {
 };
 
 export const authLogout = () => {
-	console.log('user logged out');
 	auth.signOut();
 };
 
