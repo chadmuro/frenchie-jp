@@ -110,7 +110,13 @@ const Header = () => {
 									<Button>Contact</Button>
 								</Link>
 								<Button variant="contained" color="secondary">
-									Sign In
+									Sign Up
+								</Button>
+								<Button variant="contained" color="secondary">
+									Login
+								</Button>
+								<Button variant="contained" color="secondary">
+									Logout
 								</Button>
 							</>
 						)}

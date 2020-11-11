@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/styles';
 import Header from './Header';
 import Home from './Home';
 import Events from './Events';
-import Event from './Event';
 import Photos from './Photos';
 import Discussion from './Discussion';
 import Contact from './Contact';
@@ -27,7 +26,6 @@ const App = () => {
 					<Header />
 					<Route path="/" exact component={Home} />
 					<Route path="/events" exact component={Events} />
-					<Route path="/events/:id" exact component={Event} />
 					<Route path="/photos" exact component={Photos} />
 					<Route path="/discussion" exact component={Discussion} />
 					<Route path="/contact" exact component={Contact} />

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import {
 	Container,
 	Grid,
@@ -13,7 +12,7 @@ import { makeStyles } from '@material-ui/styles';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import { useFirestore } from '../../hooks/useFirestore';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
 	title: {
 		paddingTop: '5rem',
 	},
@@ -41,12 +40,8 @@ const useStyles = makeStyles((theme) => ({
 	},
 	button: {
 		margin: '1rem 0'
-	},
-	link: {
-		textDecoration: 'none',
-		color: theme.palette.text.primary,
-	},
-}));
+	}
+});
 
 const NextEvent = () => {
 	const classes = useStyles();
@@ -71,10 +66,11 @@ const NextEvent = () => {
 								</Typography>
 								<Typography variant="h6">
 									<LocationOnIcon />
-									<Button href="#" color="secondary">
+									<Button href={event.url} target="_blank" color="secondary">
 										{event.location}
 									</Button>
 								</Typography>
+								<Typography>{event.joiners} frenchies attending</Typography>
 							</CardContent>
 						</Grid>
 						<Grid item xs={12} sm={5}>
@@ -93,10 +89,7 @@ const NextEvent = () => {
 								variant="contained"
 								color="secondary"
 								className={classes.button}
-							>
-								<Link to={'/events/1'} className={classes.link}>
-									View Event Details
-								</Link>
+							>Join Event
 							</Button>
 						</Grid>
 					</Grid>
