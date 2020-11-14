@@ -84,24 +84,6 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
 									open={open}
 									onClose={handleClose}
 								>
-									{!isLoggedIn && (
-										<>
-											<SignUpModal open={openSignUp} setOpen={setOpenSignUp} />
-											<MenuItem onClick={openSignUpModal}>Sign Up</MenuItem>
-
-											<LoginModal open={openLogin} setOpen={setOpenLogin} />
-											<MenuItem onClick={openLoginModal}>Login</MenuItem>
-										</>
-									)}
-									{isLoggedIn && (
-										<MenuItem
-											variant="contained"
-											color="secondary"
-											onClick={handleLogout}
-										>
-											Logout
-										</MenuItem>
-									)}
 									<MenuItem onClick={handleClose}>
 										<Link to="/" className={classes.link}>
 											Home
@@ -127,6 +109,24 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
 											Contact
 										</Link>
 									</MenuItem>
+									{!isLoggedIn && (
+										<>
+											<SignUpModal open={openSignUp} setOpen={setOpenSignUp} />
+											<MenuItem onClick={openSignUpModal}>Sign Up</MenuItem>
+
+											<LoginModal open={openLogin} setOpen={setOpenLogin} />
+											<MenuItem onClick={openLoginModal}>Login</MenuItem>
+										</>
+									)}
+									{isLoggedIn && (
+										<MenuItem
+											variant="contained"
+											color="secondary"
+											onClick={handleLogout}
+										>
+											Logout
+										</MenuItem>
+									)}
 								</Menu>
 							</>
 						) : (
