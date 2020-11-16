@@ -1,35 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { AppBar, Toolbar, Button, Typography, IconButton, Menu, MenuItem } from '@material-ui/core';
+import {
+	AppBar,
+	Toolbar,
+	Button,
+	Typography,
+	IconButton,
+	Menu,
+	MenuItem,
+} from '@material-ui/core';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import MenuIcon from '@material-ui/icons/Menu';
 import SignUpModal from './users/SignUpModal';
 import LoginModal from './users/LoginModal';
 import { authLogout } from '../hooks/useAuth';
+import { AuthContext } from '../contexts/AuthContext';
 
 const useStyles = makeStyles({
 	link: {
 		textDecoration: 'none',
-		color: '#220A03'
+		color: '#220A03',
 	},
-    title: {
+	title: {
 		flexGrow: 1,
 		textDecoration: 'none',
-		color: '#fff'
-    }
+		color: '#fff',
+	},
+	navigation: {
+		display: 'flex',
+		justifyContent: 'center',
+	}
 });
 
-const Header = ({ isLoggedIn, setIsLoggedIn }) => {
+const Header = () => {
 	const classes = useStyles();
+	const { isLoggedIn } = useContext(AuthContext);
 	const theme = useTheme();
-	const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+	const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 	const [anchorEl, setAnchorEl] = useState(null);
 	const open = Boolean(anchorEl);
 	const [openSignUp, setOpenSignUp] = useState(false);
 	const [openLogin, setOpenLogin] = useState(false);
 
-	const handleMenu = (event) => {
+	const handleMenu = event => {
 		setAnchorEl(event.currentTarget);
 	};
 
@@ -50,7 +64,7 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
 	const handleLogout = () => {
 		authLogout();
 		handleClose();
-	}
+	};
 
 	return (
 		<div>
@@ -59,7 +73,38 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
 					<Link to="/" className={classes.title}>
 						<Typography variant="h6">Tokyo Frenchies</Typography>
 					</Link>
-					<div>
+					<div className={classes.navigation}>
+						{!isLoggedIn && (
+							<>
+								<SignUpModal open={openSignUp} setOpen={setOpenSignUp} />
+								<Button
+									variant="contained"
+									color="secondary"
+									onClick={openSignUpModal}
+								>
+									Sign Up
+								</Button>
+
+								<LoginModal open={openLogin} setOpen={setOpenLogin} />
+								<Button
+									variant="contained"
+									color="secondary"
+									onClick={openLoginModal}
+								>
+									Login
+								</Button>
+							</>
+						)}
+						{isLoggedIn && (
+							<Button
+								variant="contained"
+								color="secondary"
+								onClick={handleLogout}
+							>
+								Logout
+							</Button>
+						)}
+
 						{isMobile ? (
 							<>
 								<IconButton
@@ -109,24 +154,6 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
 											Contact
 										</Link>
 									</MenuItem>
-									{!isLoggedIn && (
-										<>
-											<SignUpModal open={openSignUp} setOpen={setOpenSignUp} />
-											<MenuItem onClick={openSignUpModal}>Sign Up</MenuItem>
-
-											<LoginModal open={openLogin} setOpen={setOpenLogin} />
-											<MenuItem onClick={openLoginModal}>Login</MenuItem>
-										</>
-									)}
-									{isLoggedIn && (
-										<MenuItem
-											variant="contained"
-											color="secondary"
-											onClick={handleLogout}
-										>
-											Logout
-										</MenuItem>
-									)}
 								</Menu>
 							</>
 						) : (
@@ -146,36 +173,6 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
 								<Link to="/contact" className={classes.link}>
 									<Button>Contact</Button>
 								</Link>
-								{!isLoggedIn && (
-									<>
-										<SignUpModal open={openSignUp} setOpen={setOpenSignUp} />
-										<Button
-											variant="contained"
-											color="secondary"
-											onClick={openSignUpModal}
-										>
-											Sign Up
-										</Button>
-
-										<LoginModal open={openLogin} setOpen={setOpenLogin} />
-										<Button
-											variant="contained"
-											color="secondary"
-											onClick={openLoginModal}
-										>
-											Login
-										</Button>
-									</>
-								)}
-								{isLoggedIn && (
-									<Button
-										variant="contained"
-										color="secondary"
-										onClick={authLogout}
-									>
-										Logout
-									</Button>
-								)}
 							</>
 						)}
 					</div>
