@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
 	Container,
 	Grid,
@@ -11,6 +11,7 @@ import {
 import { makeStyles } from '@material-ui/styles';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import { useFirestore } from '../../hooks/useFirestore';
+import { AuthContext } from '../../contexts/AuthContext';
 
 const useStyles = makeStyles({
 	title: {
@@ -40,12 +41,16 @@ const useStyles = makeStyles({
 	},
 	button: {
 		margin: '1rem 0'
+	},
+	notLoggedIn: {
+		margin: '1rem 0'
 	}
 });
 
 const NextEvent = () => {
 	const classes = useStyles();
 	const { docs } = useFirestore('events', 'next');
+	const { isLoggedIn } = useContext(AuthContext);
 	const event = docs[0];
 
 	if (event) {
@@ -85,12 +90,18 @@ const NextEvent = () => {
 							<Typography variant="body1">
 								{event.description}
 							</Typography>
-							<Button
+							{isLoggedIn ? (
+								<Button
 								variant="contained"
 								color="secondary"
 								className={classes.button}
 							>Join Event
 							</Button>
+							) : (
+								<Typography className={classes.notLoggedIn} color="error">
+									Sign up or login to join this event!
+								</Typography>
+							)}
 						</Grid>
 					</Grid>
 				</Card>

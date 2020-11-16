@@ -74,37 +74,6 @@ const Header = () => {
 						<Typography variant="h6">Tokyo Frenchies</Typography>
 					</Link>
 					<div className={classes.navigation}>
-						{!isLoggedIn && (
-							<>
-								<SignUpModal open={openSignUp} setOpen={setOpenSignUp} />
-								<Button
-									variant="contained"
-									color="secondary"
-									onClick={openSignUpModal}
-								>
-									Sign Up
-								</Button>
-
-								<LoginModal open={openLogin} setOpen={setOpenLogin} />
-								<Button
-									variant="contained"
-									color="secondary"
-									onClick={openLoginModal}
-								>
-									Login
-								</Button>
-							</>
-						)}
-						{isLoggedIn && (
-							<Button
-								variant="contained"
-								color="secondary"
-								onClick={handleLogout}
-							>
-								Logout
-							</Button>
-						)}
-
 						{isMobile ? (
 							<>
 								<IconButton
@@ -174,6 +143,36 @@ const Header = () => {
 									<Button>Contact</Button>
 								</Link>
 							</>
+						)}
+						{!isLoggedIn && (
+							<>
+								<SignUpModal open={openSignUp} setOpen={setOpenSignUp} />
+								<Button
+									variant="contained"
+									color="secondary"
+									onClick={openSignUpModal}
+								>
+									Sign Up
+								</Button>
+
+								<LoginModal open={openLogin} setOpen={setOpenLogin} />
+								<Button
+									variant="contained"
+									color="secondary"
+									onClick={openLoginModal}
+								>
+									Login
+								</Button>
+							</>
+						)}
+						{isLoggedIn && (
+							<Button
+								variant="contained"
+								color="secondary"
+								onClick={handleLogout}
+							>
+								Logout
+							</Button>
 						)}
 					</div>
 				</Toolbar>
