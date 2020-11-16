@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Modal, Typography, Button, Fade, TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import { authSignUp } from '../../hooks/useAuth';
+import { dbSignUp } from '../../hooks/useFirestore';
 
 const useStyles = makeStyles({
 	modal: {
@@ -36,18 +37,35 @@ const useStyles = makeStyles({
 
 const SignUpModal = ({ open, setOpen }) => {
 	const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+	const [password, setPassword] = useState('');
+	const [firstName, setFirstName] = useState('');
+	const [lastName, setLastName] = useState('');
+	const [frenchieName, setFrenchieName] = useState('');
     const [error, setError] = useState('');
 	const classes = useStyles();
 
 	const formSubmit = e => {
-        e.preventDefault();
-        authSignUp(email, password).then(() => {
-            setEmail('');
-            setPassword('');
-            setOpen(!open);
-            setError('');
-        }).catch(error => setError(error.message));
+		e.preventDefault();
+		const newUser = {
+			email,
+			password,
+			firstName,
+			lastName,
+			frenchieName
+		}
+        authSignUp(email, password)
+					.then((res) => {
+						console.log(res);
+						dbSignUp({...newUser, uid: res.user.uid})
+						setEmail('');
+						setPassword('');
+						setFirstName('');
+						setLastName('');
+						setFrenchieName('');
+						setOpen(!open);
+						setError('');
+					})
+					.catch(error => setError(error.message));
 	};
 
 	return (
@@ -65,9 +83,9 @@ const SignUpModal = ({ open, setOpen }) => {
 							type="email"
 							id="email"
 							label="Email"
-                            variant="outlined"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+							variant="outlined"
+							value={email}
+							onChange={e => setEmail(e.target.value)}
 							className={classes.input}
 							fullWidth
 							required
@@ -76,13 +94,44 @@ const SignUpModal = ({ open, setOpen }) => {
 							type="password"
 							id="password"
 							label="Password"
-                            variant="outlined"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
+							variant="outlined"
+							value={password}
+							onChange={e => setPassword(e.target.value)}
 							className={classes.input}
 							fullWidth
 							required
 						/>
+						<TextField
+							type="test"
+							id="firstName"
+							label="First Name"
+							variant="outlined"
+							value={firstName}
+							onChange={e => setFirstName(e.target.value)}
+							className={classes.input}
+							required
+						/>
+						<TextField
+							type="text"
+							id="lastName"
+							label="Last Name"
+							variant="outlined"
+							value={lastName}
+							onChange={e => setLastName(e.target.value)}
+							className={classes.input}
+							required
+						/>
+						<TextField
+							type="text"
+							id="frenchieName"
+							label="Frenchie Name"
+							variant="outlined"
+							value={frenchieName}
+							onChange={e => setFrenchieName(e.target.value)}
+							className={classes.input}
+							required
+						/>
+						<br />
 						<Button
 							variant="contained"
 							color="secondary"
@@ -91,7 +140,9 @@ const SignUpModal = ({ open, setOpen }) => {
 						>
 							Sign Up
 						</Button>
-                        <Typography color="error" className={classes.error}>{error}</Typography>
+						<Typography color="error" className={classes.error}>
+							{error}
+						</Typography>
 					</form>
 				</div>
 			</Fade>

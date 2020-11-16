@@ -9,7 +9,7 @@ const useStyles = makeStyles({
 
 const Discussion = () => {
 	const classes = useStyles();
-	return <div className={classes.main}>Discussion</div>;
+	return <div className={classes.main}>Discussion Page coming soon...</div>;
 };
 
 export default Discussion;

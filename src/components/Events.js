@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import NextEvent from './events/NextEvent';
 import PastEvents from './events/PastEvents';
 import NewEventModal from './events/NewEventModal';
+import { AuthContext } from '../contexts/AuthContext';
 
 const useStyles = makeStyles({
 	main: {
@@ -20,6 +21,7 @@ const useStyles = makeStyles({
 const Events = () => {
 	const classes = useStyles();
 	const [open, setOpen] = useState(false);
+	const { isLoggedIn } = useContext(AuthContext);
 
 	const openModal = () => {
 		setOpen(!open);
@@ -27,14 +29,19 @@ const Events = () => {
 
 	return (
 		<div className={classes.main}>
-			<Button
-				variant="outlined"
-				color="secondary"
-				className={classes.newButton}
-				onClick={openModal}
-			>
-				New Event
-			</Button>
+			{isLoggedIn ? (
+				<Button
+					variant="outlined"
+					color="secondary"
+					className={classes.newButton}
+					onClick={openModal}
+				>
+					New Event
+				</Button>
+			) : (
+				''
+			)}
+
 			<NewEventModal open={open} setOpen={setOpen} />
 			<NextEvent />
 			<PastEvents />

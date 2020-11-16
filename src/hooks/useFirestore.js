@@ -33,3 +33,14 @@ export const postFirestoreEvent = (collection, obj) => {
 		console.log(err.message);
 	});
 }
+
+export const dbSignUp = newUser => {
+	projectFirestore.collection('users').doc(newUser.uid).set({
+		email: newUser.email,
+		firstName: newUser.firstName,
+		lastName: newUser.lastName,
+		frenchieName: newUser.frenchieName,
+		likedPhotos: [],
+		eventsJoined: [],
+	});
+};
