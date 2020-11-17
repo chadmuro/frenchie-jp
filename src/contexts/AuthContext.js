@@ -4,14 +4,15 @@ import { auth } from '../firebase/config';
 export const AuthContext = createContext();
 
 const AuthContextProvider = props => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const [isLoggedIn, setIsLoggedIn] = useState('');
 
     auth.onAuthStateChanged(user => {
 			if (user) {
-				setIsLoggedIn(true);
+				setIsLoggedIn(user.uid);
+				console.log(user.uid);
 				console.log('logged in as ' + user.email);
 			} else {
-				setIsLoggedIn(false);
+				setIsLoggedIn('');
 				console.log('not logged in');
 			}
 		});

@@ -26,13 +26,13 @@ const App = () => {
 			<BrowserRouter>
 				<div className={classes.container}>
 					<AuthContextProvider>
-						<Header />
-						<Route path="/" exact component={Home} />
-						<Route path="/events" exact component={Events} />
-						<Route path="/photos" exact component={Photos} />
-						<Route path="/discussion" exact component={Discussion} />
-						<Route path="/contact" exact component={Contact} />
-						<Footer />
+							<Header />
+							<Route path="/" exact component={Home} />
+							<Route path="/events" exact component={Events} />
+							<Route path="/photos" exact component={Photos} />
+							<Route path="/discussion" exact component={Discussion} />
+							<Route path="/contact" exact component={Contact} />
+							<Footer />
 					</AuthContextProvider>
 				</div>
 			</BrowserRouter>
