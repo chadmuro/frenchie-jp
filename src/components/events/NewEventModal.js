@@ -2,7 +2,7 @@ import React from 'react';
 import { Modal, Typography, Button, TextField, IconButton, Fade } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from '@material-ui/styles';
-import { postFirestoreEvent } from '../../hooks/useFirestore';
+import { postFirestore } from '../../hooks/useFirestore';
 
 const useStyles = makeStyles({
     modal: {
@@ -47,10 +47,12 @@ const NewEventModal = ({ open, setOpen }) => {
             time: e.target.elements.time.value,
             description: e.target.elements.description.value,
             location: e.target.elements.location.value,
-            url: e.target.elements.url.value,
+			url: e.target.elements.url.value,
+			joiners: 0,
+			next: true
         }
         
-        postFirestoreEvent('events', eventObj);
+        postFirestore('events', eventObj);
         setOpen(!open);
     }
 

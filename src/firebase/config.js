@@ -23,6 +23,5 @@ firebase.analytics();
 const projectStorage = firebase.storage();
 const projectFirestore = firebase.firestore();
 const auth = firebase.auth();
-const timestamp = firebase.firestore.FieldValue.serverTimestamp;
 
-export { projectStorage, projectFirestore, auth, timestamp };
+export { projectStorage, projectFirestore, auth };

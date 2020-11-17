@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { projectFirestore, timestamp } from '../firebase/config';
+import { projectFirestore } from '../firebase/config';
 
 export const useFirestore = (collection, order) => {
 	const [docs, setDocs] = useState([]);
@@ -8,32 +8,35 @@ export const useFirestore = (collection, order) => {
 		const unsub = projectFirestore
 			.collection(collection)
 			.orderBy(order, 'desc')
-			.onSnapshot((snap) => {
+			.onSnapshot(snap => {
 				let documents = [];
-				snap.forEach((doc) => {
+				snap.forEach(doc => {
 					documents.push({ ...doc.data(), id: doc.id });
 				});
 				setDocs(documents);
-            });
-            return () => unsub();
+			});
+		return () => unsub();
 	}, [collection, order]);
 
 	return { docs };
 };
 
-export const postFirestoreEvent = (collection, obj) => {
-	projectFirestore.collection(collection).add({
-		...obj, 
-		joiners: 0,
-		next: true,
-		createdAt: timestamp()
-	}).then(() => {
-		console.log('event submitted!');
-	}).catch(err => {
-		console.log(err.message);
-	});
-}
+export const postFirestore = (collection, obj) => {
+	projectFirestore
+		.collection(collection)
+		.add({
+			...obj,
+			createdAt: new Date(),
+		})
+		.then(() => {
+			console.log('submitted to firestore!');
+		})
+		.catch(err => {
+			console.log(err.message);
+		});
+};
 
+// create user document in firestore
 export const dbSignUp = newUser => {
 	projectFirestore.collection('users').doc(newUser.uid).set({
 		email: newUser.email,
@@ -43,4 +46,22 @@ export const dbSignUp = newUser => {
 		likedPhotos: [],
 		eventsJoined: [],
 	});
+};
+
+// get user information from firestore
+export const GetUserInfo = (user) => {
+	const [userInfo, setUserInfo] = useState([]);
+
+	useEffect(() => {
+		if (user) {
+				projectFirestore
+				.collection('users')
+				.doc(user)
+				.get()
+				.then(doc => {
+					setUserInfo({ ...doc.data() });
+				});
+		}
+	}, [user]);
+	return userInfo;
 };
