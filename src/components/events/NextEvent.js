@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import {
 	Container,
 	Grid,
@@ -51,7 +51,6 @@ const NextEvent = () => {
 	const classes = useStyles();
 	const { docs } = useFirestore('events', 'next');
 	const { isLoggedIn } = useContext(AuthContext);
-	const [joinedEvent, setJoinedEvent] = useState(false);
 	const userInfo = GetUserInfo(isLoggedIn);
 	const { eventsJoined } = userInfo;
 	
@@ -59,7 +58,6 @@ const NextEvent = () => {
 
 	const handleClick = () => {
 		joinEvent(isLoggedIn, event.id);
-		setJoinedEvent(!joinedEvent);
 	};
 
 	if (event) {
@@ -101,7 +99,7 @@ const NextEvent = () => {
 							<Typography variant="body1">{event.description}</Typography>
 
 							{isLoggedIn ? (
-								eventsJoined && (eventsJoined.includes(event.id) || joinedEvent) ? (
+								eventsJoined && eventsJoined.includes(event.id) ? (
 									<Button
 										variant="contained"
 										className={classes.button}

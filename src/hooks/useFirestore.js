@@ -55,13 +55,13 @@ export const GetUserInfo = user => {
 
 	useEffect(() => {
 		if (user) {
-			projectFirestore
+			const unsub = projectFirestore
 				.collection('users')
 				.doc(user)
-				.get()
-				.then(doc => {
+				.onSnapshot(doc => {
 					setUserInfo({ ...doc.data() });
 				});
+			return () => unsub();
 		}
 	}, [user]);
 	return userInfo;
