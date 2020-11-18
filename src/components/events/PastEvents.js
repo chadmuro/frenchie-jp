@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/styles';
 import { useFirestore } from '../../hooks/useFirestore';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
 	title: {
 		paddingTop: '5rem',
 	},
@@ -34,27 +34,38 @@ const PastEvents = () => {
 				Past Events
 			</Typography>
 			<Grid container spacing={3}>
-				{docs && docs.map((event) => {
-					return (
-						<Grid item xs={12} sm={4} className={classes.eventCard} key={event.id}>
-							<Card className={classes.card}>
-								<Typography variant="body1">
-									{event.date.toUpperCase()}, {event.time}
-								</Typography>
-								<Typography variant="h6">{event.name}</Typography>
-								<Button
-									variant="outlined"
-									color="secondary"
-									className={classes.button}
+				{docs &&
+					docs.map(event => {
+						if (!event.next) {
+							return (
+								<Grid
+									item
+									xs={12}
+									sm={4}
+									className={classes.eventCard}
+									key={event.id}
 								>
-									<Link to="/photos" className={classes.link}>
-										View Photos
-									</Link>
-								</Button>
-							</Card>
-						</Grid>
-					);
-				})}
+									<Card className={classes.card}>
+										<Typography variant="body1">
+											{event.date.toUpperCase()}, {event.time}
+										</Typography>
+										<Typography variant="h6">{event.name}</Typography>
+										<Button
+											variant="outlined"
+											color="secondary"
+											className={classes.button}
+										>
+											<Link to="/photos" className={classes.link}>
+												View Photos
+											</Link>
+										</Button>
+									</Card>
+								</Grid>
+							);
+						} else {
+							return null;
+						}
+					})}
 			</Grid>
 		</Container>
 	);

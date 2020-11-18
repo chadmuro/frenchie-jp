@@ -9,7 +9,6 @@ const AuthContextProvider = props => {
     auth.onAuthStateChanged(user => {
 			if (user) {
 				setIsLoggedIn(user.uid);
-				console.log(user.uid);
 				console.log('logged in as ' + user.email);
 			} else {
 				setIsLoggedIn('');
