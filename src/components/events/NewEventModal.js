@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Modal, Typography, Button, TextField, IconButton, Fade } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from '@material-ui/styles';
@@ -37,22 +37,34 @@ const useStyles = makeStyles({
 })
 
 const NewEventModal = ({ open, setOpen }) => {
+	const [name, setName] = useState('');
+	const [date, setDate] = useState('');
+	const [time, setTime] = useState('');
+	const [description, setDescription] = useState('');
+	const [location, setLocation] = useState('');
+	const [url, setUrl] = useState('');
     const classes = useStyles();
 
     const formSubmit = (e) => {
         e.preventDefault();
         let eventObj = {
-            name: e.target.elements.name.value,
-            date: e.target.elements.date.value,
-            time: e.target.elements.time.value,
-            description: e.target.elements.description.value,
-            location: e.target.elements.location.value,
-			url: e.target.elements.url.value,
+            name,
+            date,
+            time,
+            description,
+            location,
+			url,
 			joiners: 0,
 			next: true
         }
         
-        postFirestore('events', eventObj);
+		postFirestore('events', eventObj);
+		setName('');
+		setDate('');
+		setTime('');
+		setDescription('');
+		setLocation('');
+		setUrl('');
         setOpen(!open);
     }
 
@@ -60,14 +72,14 @@ const NewEventModal = ({ open, setOpen }) => {
 		<Modal
 			open={open}
 			className={classes.modal}
-			onClick={(e) => (e.target.ariaHidden ? setOpen(!open) : null)}
+			onClick={e => (e.target.ariaHidden ? setOpen(!open) : null)}
 			closeAfterTransition
 		>
 			<Fade in={open}>
 				<div className={classes.container}>
 					<IconButton
 						className={classes.closeButton}
-						onClick={(e) => (e.target.ariaHidden ? setOpen(!open) : null)}
+						onClick={e => (e.target.ariaHidden ? setOpen(!open) : null)}
 					>
 						<CloseIcon />
 					</IconButton>
@@ -78,6 +90,8 @@ const NewEventModal = ({ open, setOpen }) => {
 							label="Event Name"
 							variant="outlined"
 							className={classes.input}
+							value={name}
+							onChange={e => setName(e.target.value)}
 							fullWidth
 							required
 						/>
@@ -86,6 +100,8 @@ const NewEventModal = ({ open, setOpen }) => {
 							label="Date"
 							variant="outlined"
 							className={classes.input}
+							value={date}
+							onChange={e => setDate(e.target.value)}
 							required
 						/>
 						<TextField
@@ -93,6 +109,8 @@ const NewEventModal = ({ open, setOpen }) => {
 							label="Time"
 							variant="outlined"
 							className={classes.input}
+							value={time}
+							onChange={e => setTime(e.target.value)}
 							required
 						/>
 						<TextField
@@ -100,6 +118,8 @@ const NewEventModal = ({ open, setOpen }) => {
 							label="Description"
 							variant="outlined"
 							className={classes.input}
+							value={description}
+							onChange={e => setDescription(e.target.value)}
 							multiline
 							rows={3}
 							fullWidth
@@ -110,6 +130,8 @@ const NewEventModal = ({ open, setOpen }) => {
 							label="Location"
 							variant="outlined"
 							className={classes.input}
+							value={location}
+							onChange={e => setLocation(e.target.value)}
 							required
 						/>
 						<TextField
@@ -117,6 +139,8 @@ const NewEventModal = ({ open, setOpen }) => {
 							label="Location URL"
 							variant="outlined"
 							className={classes.input}
+							value={url}
+							onChange={e => setUrl(e.target.value)}
 							required
 						/>
 						<Button

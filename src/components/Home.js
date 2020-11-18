@@ -1,17 +1,18 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Box, Typography, Button } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import NextEvent from './events/NextEvent';
 import Subscribe from './contactInfo/Subscribe';
 
 import heroImage from '../img/frenchie-hero.jpg';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
 	gutterBottom: {
 		marginBottom: '2.5rem',
 	},
 	main: {
-		flexGrow: '1'
+		flexGrow: '1',
 	},
 	hero: {
 		backgroundImage: `linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url(${heroImage})`,
@@ -26,9 +27,13 @@ const useStyles = makeStyles({
 	},
 	text: {
 		color: '#fff',
-		textAlign: 'center'
+		textAlign: 'center',
 	},
-});
+	link: {
+		textDecoration: 'none',
+		color: theme.palette.text.primary,
+	},
+}));
 
 const Hero = () => {
 	const classes = useStyles();
@@ -48,7 +53,9 @@ const Hero = () => {
 					Tokyo French Bulldog Meetup
 				</Typography>
 				<Button variant="contained" color="secondary" size="large">
-					View Events
+					<Link to="/events" className={classes.link}>
+						View Events
+					</Link>
 				</Button>
 			</Box>
 			<NextEvent />

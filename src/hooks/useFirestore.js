@@ -1,3 +1,4 @@
+import firebase from 'firebase/app';
 import { useState, useEffect } from 'react';
 import { projectFirestore } from '../firebase/config';
 
@@ -49,12 +50,12 @@ export const dbSignUp = newUser => {
 };
 
 // get user information from firestore
-export const GetUserInfo = (user) => {
+export const GetUserInfo = user => {
 	const [userInfo, setUserInfo] = useState([]);
 
 	useEffect(() => {
 		if (user) {
-				projectFirestore
+			projectFirestore
 				.collection('users')
 				.doc(user)
 				.get()
@@ -64,4 +65,24 @@ export const GetUserInfo = (user) => {
 		}
 	}, [user]);
 	return userInfo;
+};
+
+export const joinEvent = (user, eventId) => {
+	if (user) {
+		projectFirestore
+			.collection('users')
+			.doc(user)
+			.update({
+				eventsJoined: firebase.firestore.FieldValue.arrayUnion(eventId),
+			})
+			.then(() => console.log(`${user} joined event ${eventId}`))
+			.catch(err => console.log(err));
+
+		projectFirestore
+			.collection('events')
+			.doc(eventId)
+			.update({
+				joiners: firebase.firestore.FieldValue.increment(1),
+			});
+	}
 };

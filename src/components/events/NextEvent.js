@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import {
 	Container,
 	Grid,
@@ -10,7 +10,7 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
-import { useFirestore } from '../../hooks/useFirestore';
+import { useFirestore, joinEvent, GetUserInfo } from '../../hooks/useFirestore';
 import { AuthContext } from '../../contexts/AuthContext';
 
 const useStyles = makeStyles({
@@ -33,25 +33,34 @@ const useStyles = makeStyles({
 	},
 	image: {
 		height: '200px',
-		marginBottom: '20px'
+		marginBottom: '20px',
 	},
 	description: {
 		paddingLeft: '2rem',
-		paddingRight: '2rem'
+		paddingRight: '2rem',
 	},
 	button: {
-		margin: '1rem 0'
+		margin: '1rem 0',
 	},
 	notLoggedIn: {
-		margin: '1rem 0'
-	}
+		margin: '1rem 0',
+	},
 });
 
 const NextEvent = () => {
 	const classes = useStyles();
 	const { docs } = useFirestore('events', 'next');
 	const { isLoggedIn } = useContext(AuthContext);
+	const [joinedEvent, setJoinedEvent] = useState(false);
+	const userInfo = GetUserInfo(isLoggedIn);
+	const { eventsJoined } = userInfo;
+	
 	const event = docs[0];
+
+	const handleClick = () => {
+		joinEvent(isLoggedIn, event.id);
+		setJoinedEvent(!joinedEvent);
+	};
 
 	if (event) {
 		return (
@@ -65,7 +74,9 @@ const NextEvent = () => {
 					<Grid container>
 						<Grid item xs={12} sm={7}>
 							<CardContent className={classes.content}>
-								<Typography variant="h6">{event.date.toUpperCase()}, {event.time}</Typography>
+								<Typography variant="h6">
+									{event.date.toUpperCase()}, {event.time}
+								</Typography>
 								<Typography variant="h4" className={classes.name}>
 									{event.name}
 								</Typography>
@@ -87,16 +98,27 @@ const NextEvent = () => {
 							/>
 						</Grid>
 						<Grid item xs={12} className={classes.description}>
-							<Typography variant="body1">
-								{event.description}
-							</Typography>
+							<Typography variant="body1">{event.description}</Typography>
+
 							{isLoggedIn ? (
-								<Button
-								variant="contained"
-								color="secondary"
-								className={classes.button}
-							>Join Event
-							</Button>
+								eventsJoined && (eventsJoined.includes(event.id) || joinedEvent) ? (
+									<Button
+										variant="contained"
+										className={classes.button}
+										disabled
+									>
+										Attending Event
+									</Button>
+								) : (
+									<Button
+										variant="contained"
+										color="secondary"
+										className={classes.button}
+										onClick={handleClick}
+									>
+										Join Event
+									</Button>
+								)
 							) : (
 								<Typography className={classes.notLoggedIn} color="error">
 									Sign up or login to join this event!
@@ -116,7 +138,7 @@ const NextEvent = () => {
 					</Typography>
 				</Grid>
 			</Container>
-		)
+		);
 	}
 };
 
