@@ -66,7 +66,7 @@ export const GetUserInfo = user => {
 	return userInfo;
 };
 
-export const joinEvent = (user, eventId) => {
+export const joinEventFirestore = (user, eventId) => {
 	if (user) {
 		db.collection('users')
 			.doc(user)
@@ -80,6 +80,24 @@ export const joinEvent = (user, eventId) => {
 			.doc(eventId)
 			.update({
 				joiners: firebase.firestore.FieldValue.increment(1),
+			});
+	}
+};
+
+export const unjoinEventFirestore = (user, eventId) => {
+	if (user) {
+		db.collection('users')
+			.doc(user)
+			.update({
+				eventsJoined: firebase.firestore.FieldValue.arrayRemove(eventId),
+			})
+			.then(() => console.log(`${user} unjoined event ${eventId}`))
+			.catch(err => console.log(err));
+
+		db.collection('events')
+			.doc(eventId)
+			.update({
+				joiners: firebase.firestore.FieldValue.increment(-1),
 			});
 	}
 };

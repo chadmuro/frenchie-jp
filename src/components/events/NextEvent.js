@@ -10,7 +10,7 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
-import { useFirestore, joinEvent, GetUserInfo } from '../../hooks/useFirestore';
+import { useFirestore, joinEventFirestore, unjoinEventFirestore, GetUserInfo } from '../../hooks/useFirestore';
 import { AuthContext } from '../../contexts/AuthContext';
 
 const useStyles = makeStyles({
@@ -56,10 +56,6 @@ const NextEvent = () => {
 	
 	const event = docs[0];
 
-	const handleClick = () => {
-		joinEvent(isLoggedIn, event.id);
-	};
-
 	if (event) {
 		return (
 			<Container maxWidth="md">
@@ -103,16 +99,16 @@ const NextEvent = () => {
 									<Button
 										variant="contained"
 										className={classes.button}
-										disabled
+										onClick={() => unjoinEventFirestore(isLoggedIn, event.id)}
 									>
-										Attending Event
+										Cancel Join Event
 									</Button>
 								) : (
 									<Button
 										variant="contained"
 										color="secondary"
 										className={classes.button}
-										onClick={handleClick}
+										onClick={() => joinEventFirestore(isLoggedIn, event.id)}
 									>
 										Join Event
 									</Button>
