@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Modal, Typography, Button, Fade, TextField } from '@material-ui/core';
+import { Modal, Typography, Button, Fade, TextField, IconButton } from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from '@material-ui/styles';
 import { authSignUp } from '../../hooks/useAuth';
 import { dbSignUp } from '../../hooks/useFirestore';
+import logoSmall from '../../img/logo192.png';
 
 const useStyles = makeStyles({
 	modal: {
@@ -13,26 +15,32 @@ const useStyles = makeStyles({
 	container: {
 		backgroundColor: '#fff',
 		outline: 'none',
-		maxHeight: '1000px',
+		maxHeight: '100%',
 		maxWidth: '500px',
+		overflowY: 'auto',
 		textAlign: 'center',
 		padding: '1rem',
 		paddingTop: '3rem',
 		position: 'relative',
 	},
+	closeButton: {
+		position: 'absolute',
+		top: 5,
+		right: 5,
+	},
 	form: {
-        padding: '1rem',
-        paddingRight: '2rem'
+		padding: '1rem',
+		paddingRight: '2rem',
 	},
 	input: {
 		margin: '.5rem',
 	},
 	button: {
 		marginTop: '1rem',
-    },
-    error: {
-        marginTop: '1rem'
-    }
+	},
+	error: {
+		marginTop: '1rem',
+	},
 });
 
 const SignUpModal = ({ open, setOpen }) => {
@@ -77,6 +85,13 @@ const SignUpModal = ({ open, setOpen }) => {
 		>
 			<Fade in={open}>
 				<div className={classes.container}>
+					<IconButton
+						className={classes.closeButton}
+						onClick={e => (e.target.ariaHidden ? setOpen(!open) : null)}
+					>
+						<CloseIcon />
+					</IconButton>
+					<img src={logoSmall} alt="logo" />
 					<Typography variant="h4">Sign Up</Typography>
 					<form className={classes.form} onSubmit={formSubmit}>
 						<TextField

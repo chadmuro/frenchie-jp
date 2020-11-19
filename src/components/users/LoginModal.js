@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { Modal, Typography, Button, Fade, TextField } from '@material-ui/core';
+import { Modal, Typography, Button, Fade, TextField, IconButton } from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from '@material-ui/styles';
 import { authLogin } from '../../hooks/useAuth';
+import logoSmall from '../../img/logo192.png';
 
 const useStyles = makeStyles({
 	modal: {
@@ -19,6 +21,11 @@ const useStyles = makeStyles({
 		paddingTop: '3rem',
 		position: 'relative',
 	},
+	closeButton: {
+		position: 'absolute',
+		top: 5,
+		right: 5,
+	},
 	form: {
 		padding: '1rem',
 		paddingRight: '2rem',
@@ -28,10 +35,10 @@ const useStyles = makeStyles({
 	},
 	button: {
 		marginTop: '1rem',
-    },
-    error: {
-        marginTop: '1rem'
-    }
+	},
+	error: {
+		marginTop: '1rem',
+	},
 });
 
 const LoginModal = ({ open, setOpen }) => {
@@ -59,6 +66,13 @@ const LoginModal = ({ open, setOpen }) => {
 		>
 			<Fade in={open}>
 				<div className={classes.container}>
+					<IconButton
+						className={classes.closeButton}
+						onClick={e => (e.target.ariaHidden ? setOpen(!open) : null)}
+					>
+						<CloseIcon />
+					</IconButton>
+					<img src={logoSmall} alt="logo" />
 					<Typography variant="h4">Login</Typography>
 					<form className={classes.form} onSubmit={formSubmit}>
 						<TextField
@@ -91,7 +105,9 @@ const LoginModal = ({ open, setOpen }) => {
 						>
 							Login
 						</Button>
-                        <Typography color="error" className={classes.error}>{error}</Typography>
+						<Typography color="error" className={classes.error}>
+							{error}
+						</Typography>
 					</form>
 				</div>
 			</Fade>
