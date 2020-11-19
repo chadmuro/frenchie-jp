@@ -1,12 +1,12 @@
 import firebase from 'firebase/app';
 import { useState, useEffect } from 'react';
-import { projectFirestore } from '../firebase/config';
+import { db } from '../firebase/config';
 
 export const useFirestore = (collection, order) => {
 	const [docs, setDocs] = useState([]);
 
 	useEffect(() => {
-		const unsub = projectFirestore
+		const unsub = db
 			.collection(collection)
 			.orderBy(order, 'desc')
 			.onSnapshot(snap => {
@@ -23,7 +23,7 @@ export const useFirestore = (collection, order) => {
 };
 
 export const postFirestore = (collection, obj) => {
-	projectFirestore
+	db
 		.collection(collection)
 		.add({
 			...obj,
@@ -39,7 +39,7 @@ export const postFirestore = (collection, obj) => {
 
 // create user document in firestore
 export const dbSignUp = newUser => {
-	projectFirestore.collection('users').doc(newUser.uid).set({
+	db.collection('users').doc(newUser.uid).set({
 		email: newUser.email,
 		firstName: newUser.firstName,
 		lastName: newUser.lastName,
@@ -55,7 +55,7 @@ export const GetUserInfo = user => {
 
 	useEffect(() => {
 		if (user) {
-			const unsub = projectFirestore
+			const unsub = db
 				.collection('users')
 				.doc(user)
 				.onSnapshot(doc => {
@@ -69,7 +69,7 @@ export const GetUserInfo = user => {
 
 export const joinEvent = (user, eventId) => {
 	if (user) {
-		projectFirestore
+		db
 			.collection('users')
 			.doc(user)
 			.update({
@@ -78,7 +78,7 @@ export const joinEvent = (user, eventId) => {
 			.then(() => console.log(`${user} joined event ${eventId}`))
 			.catch(err => console.log(err));
 
-		projectFirestore
+		db
 			.collection('events')
 			.doc(eventId)
 			.update({
