@@ -23,8 +23,7 @@ export const useFirestore = (collection, order) => {
 };
 
 export const postFirestore = (collection, obj) => {
-	db
-		.collection(collection)
+	db.collection(collection)
 		.add({
 			...obj,
 			createdAt: new Date(),
@@ -69,8 +68,7 @@ export const GetUserInfo = user => {
 
 export const joinEvent = (user, eventId) => {
 	if (user) {
-		db
-			.collection('users')
+		db.collection('users')
 			.doc(user)
 			.update({
 				eventsJoined: firebase.firestore.FieldValue.arrayUnion(eventId),
@@ -78,11 +76,46 @@ export const joinEvent = (user, eventId) => {
 			.then(() => console.log(`${user} joined event ${eventId}`))
 			.catch(err => console.log(err));
 
-		db
-			.collection('events')
+		db.collection('events')
 			.doc(eventId)
 			.update({
 				joiners: firebase.firestore.FieldValue.increment(1),
+			});
+	}
+};
+
+export const likePhotoFirestore = (user, imageId) => {
+	if (user) {
+		db.collection('users')
+			.doc(user)
+			.update({
+				likedPhotos: firebase.firestore.FieldValue.arrayUnion(imageId),
+			})
+			.then(() => console.log(`${user} liked photo ${imageId}`))
+			.catch(err => console.log(err));
+
+		db.collection('images')
+			.doc(imageId)
+			.update({
+				likes: firebase.firestore.FieldValue.increment(1),
+			});
+	}
+};
+
+export const unlikePhotoFirestore = (user, imageId) => {
+	if (user) {
+		db.collection('users')
+			.doc(user)
+			.update({
+				likedPhotos: firebase.firestore.FieldValue.arrayRemove(imageId),
+			})
+			.then(() => console.log(`${user} unliked photo ${imageId}`))
+			.catch(err => console.log(err));
+
+		db.collection('images')
+			.doc(imageId)
+			.update({
+				likes: firebase.firestore.FieldValue.increment(-1),
 			});
 	}
 };
