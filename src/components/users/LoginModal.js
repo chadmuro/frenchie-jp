@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
-import { Modal, Typography, Button, Fade, TextField, IconButton } from '@material-ui/core';
+import {
+	Modal,
+	Typography,
+	Button,
+	Fade,
+	TextField,
+	IconButton,
+} from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from '@material-ui/styles';
 import { authLogin } from '../../hooks/useAuth';
@@ -44,18 +51,20 @@ const useStyles = makeStyles({
 
 const LoginModal = ({ open, setOpen }) => {
 	const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
+	const [password, setPassword] = useState('');
+	const [error, setError] = useState('');
 	const classes = useStyles();
 
 	const formSubmit = e => {
 		e.preventDefault();
-		authLogin(email, password).then(() => {
-            setEmail('');
-            setPassword('');
-            setOpen(!open);
-            setError('');
-        }).catch(error => setError(error.message));
+		authLogin(email, password)
+			.then(() => {
+				setEmail('');
+				setPassword('');
+				setOpen(!open);
+				setError('');
+			})
+			.catch(error => setError(error.message));
 	};
 
 	return (
@@ -69,10 +78,11 @@ const LoginModal = ({ open, setOpen }) => {
 				<div className={classes.container}>
 					<IconButton
 						className={classes.closeButton}
-						onClick={e => (e.target.ariaHidden ? setOpen(!open) : null)}
+						onClick={() => setOpen(!open)}
 					>
 						<CloseIcon />
 					</IconButton>
+
 					<img src={logoSmall} alt="logo" />
 					<Typography variant="h4">Login</Typography>
 					<form className={classes.form} onSubmit={formSubmit}>

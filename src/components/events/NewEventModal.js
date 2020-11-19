@@ -79,7 +79,7 @@ const NewEventModal = ({ open, setOpen }) => {
 				<div className={classes.container}>
 					<IconButton
 						className={classes.closeButton}
-						onClick={e => (e.target.ariaHidden ? setOpen(!open) : null)}
+						onClick={() => setOpen(!open)}
 					>
 						<CloseIcon />
 					</IconButton>
