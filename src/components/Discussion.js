@@ -1,16 +1,14 @@
 import React, { useContext, useState } from 'react';
 import {
 	Grid,
-	Card,
-	CardContent,
 	Container,
 	Typography,
 	Button,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import { AuthContext } from '../contexts/AuthContext';
-import { useFirestore } from '../hooks/useFirestore';
 import NewPostModal from './discussion/NewPostModal';
+import Posts from './discussion/Posts';
 import Notifications from './discussion/Notifications';
 
 const useStyles = makeStyles({
@@ -34,7 +32,6 @@ const useStyles = makeStyles({
 const Discussion = () => {
 	const classes = useStyles();
 	const [open, setOpen] = useState(false);
-	const { docs } = useFirestore('posts', 'createdAt');
 	const { isLoggedIn } = useContext(AuthContext);
 
 	const openModal = () => {
@@ -64,23 +61,7 @@ const Discussion = () => {
 				</Grid>
 				{isLoggedIn ? (
 					<Grid container spacing={4} className={classes.container}>
-					<Grid item xs={12} sm={8}>
-						{docs &&
-							docs.map(post => {
-								return (
-									<Card key={post.id}>
-										<CardContent>
-											<Typography variant="h6">{post.title}</Typography>
-											<Typography color="primary">{post.name}</Typography>
-											<Typography variant="caption">
-												{post.createdAt.toDate().toDateString()}
-											</Typography>
-											<Typography>{post.description}</Typography>
-										</CardContent>
-									</Card>
-								);
-							})}
-					</Grid>
+					<Posts />
 					<Notifications />
 				</Grid>
 				) : (
