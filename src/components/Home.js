@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Box, Typography, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import NextEvent from './events/NextEvent';
-import Subscribe from './contactInfo/Subscribe';
+import Subscribe from './contact/Subscribe';
 
 import heroImage from '../img/frenchie-hero.jpg';
 

@@ -6,10 +6,10 @@ import {
 	Button,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
-import { AuthContext } from '../contexts/AuthContext';
-import NewPostModal from './discussion/NewPostModal';
-import Posts from './discussion/Posts';
-import Notifications from './discussion/Notifications';
+import { AuthContext } from '../../contexts/AuthContext';
+import NewPostModal from './NewPostModal';
+import Posts from './Posts';
+import Notifications from './Notifications';
 
 const useStyles = makeStyles({
 	main: {

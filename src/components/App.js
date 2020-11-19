@@ -3,11 +3,12 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { makeStyles } from '@material-ui/styles';
 import Header from './Header';
 import Home from './Home';
-import Events from './Events';
-import Photos from './Photos';
-import Discussion from './Discussion';
-import Contact from './Contact';
+import Events from './events/Events';
+import Photos from './photos/Photos';
+import Discussion from './discussion/Discussion';
+import Contact from './contact/Contact';
 import Footer from './Footer';
+import UserProfile from './users/UserProfile';
 import AuthContextProvider from '../contexts/AuthContext';
 
 const useStyles = makeStyles({
@@ -32,6 +33,7 @@ const App = () => {
 							<Route path="/photos" exact component={Photos} />
 							<Route path="/discussion" exact component={Discussion} />
 							<Route path="/contact" exact component={Contact} />
+							<Route path="/profile/:id" component={UserProfile} />
 							<Footer />
 					</AuthContextProvider>
 				</div>

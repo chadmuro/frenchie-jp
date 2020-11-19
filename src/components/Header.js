@@ -167,15 +167,22 @@ const Header = () => {
 							</>
 						)}
 						{isLoggedIn && (
-							<Link to="/" className={classes.link}>
-								<Button
-									variant="contained"
-									color="secondary"
-									onClick={handleLogout}
-								>
-									Logout
-								</Button>
-							</Link>
+							<>
+								<Link to={`/profile/${isLoggedIn}`} className={classes.link}>
+									<Button variant="contained" color="secondary">
+										Profile
+									</Button>
+								</Link>
+								<Link to="/" className={classes.link}>
+									<Button
+										variant="contained"
+										color="secondary"
+										onClick={handleLogout}
+									>
+										Logout
+									</Button>
+								</Link>
+							</>
 						)}
 					</div>
 				</Toolbar>

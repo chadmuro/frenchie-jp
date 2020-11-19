@@ -1,10 +1,10 @@
 import React, { useState, useContext } from 'react';
 import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
-import NextEvent from './events/NextEvent';
-import PastEvents from './events/PastEvents';
-import NewEventModal from './events/NewEventModal';
-import { AuthContext } from '../contexts/AuthContext';
+import NextEvent from './NextEvent';
+import PastEvents from './PastEvents';
+import NewEventModal from './NewEventModal';
+import { AuthContext } from '../../contexts/AuthContext';
 
 const useStyles = makeStyles({
 	main: {

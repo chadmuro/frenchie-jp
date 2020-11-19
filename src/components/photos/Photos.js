@@ -4,9 +4,9 @@ import {
 	Typography,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
-import UploadForm from './photos/UploadForm';
-import ImageGrid from './photos/ImageGrid';
-import { AuthContext } from '../contexts/AuthContext';
+import UploadForm from './UploadForm';
+import ImageGrid from './ImageGrid';
+import { AuthContext } from '../../contexts/AuthContext';
 
 const useStyles = makeStyles({
 	title: {

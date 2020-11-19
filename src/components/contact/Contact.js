@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/styles';
-import Subscribe from './contactInfo/Subscribe';
-import About from './contactInfo/About';
+import Subscribe from './Subscribe';
+import About from './About';
 
 const useStyles = makeStyles({
 	main: {
