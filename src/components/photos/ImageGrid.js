@@ -9,12 +9,13 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import { useFirestore } from '../../hooks/useFirestore';
+import { useFirestore, GetUserInfo, likePhotoFirestore, unlikePhotoFirestore } from '../../hooks/useFirestore';
 import { AuthContext } from '../../contexts/AuthContext';
 
 const useStyles = makeStyles({
 	gridList: {
 		minHeight: '250px',
+		marginTop: '20px'
 	},
 	titleBar: {
 		background:
@@ -23,32 +24,57 @@ const useStyles = makeStyles({
 	icon: {
 		color: 'white',
 	},
+	iconLiked: {
+		color: '#ff0000'
+	}
 });
 
 const ImageGrid = () => {
 	const classes = useStyles();
-	const { docs } = useFirestore('images', 'createdAt');
+	const { docs } = useFirestore('images', 'likes');
 	const theme = useTheme();
 	const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
 	const { isLoggedIn } = useContext(AuthContext);
+	const userInfo = GetUserInfo(isLoggedIn);
+	const { likedPhotos } = userInfo;
 
 	return (
 		<GridList cols={isMobile ? 2 : 4} spacing={10}>
 			{docs &&
 				docs.map(image => (
-					<GridListTile key={image.id} className={classes.gridList}>
+					<GridListTile
+						key={image.id}
+						id={image.id}
+						className={classes.gridList}
+					>
 						<img src={image.url} alt={image.name} />
 						{isLoggedIn ? (
-							<GridListTileBar
-								titlePosition="top"
-								actionIcon={
-									<IconButton className={classes.icon}>
-										<FavoriteIcon />
-									</IconButton>
-								}
-								actionPosition="left"
-								className={classes.titleBar}
-							/>
+							likedPhotos && likedPhotos.includes(image.id) ? (
+								<GridListTileBar
+									titlePosition="top"
+									actionIcon={
+										<IconButton className={classes.iconLiked} onClick={() => unlikePhotoFirestore(isLoggedIn, image.id)}>
+											<FavoriteIcon />
+										</IconButton>
+									}
+									actionPosition="left"
+									className={classes.titleBar}
+								/>
+							) : (
+								<GridListTileBar
+									titlePosition="top"
+									actionIcon={
+										<IconButton
+											className={classes.icon}
+											onClick={() => likePhotoFirestore(isLoggedIn, image.id)}
+										>
+											<FavoriteIcon />
+										</IconButton>
+									}
+									actionPosition="left"
+									className={classes.titleBar}
+								/>
+							)
 						) : (
 							''
 						)}

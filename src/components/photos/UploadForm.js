@@ -40,7 +40,7 @@ const UploadForm = () => {
 		<form className={classes.button}>
 			<label htmlFor="upload-photo">
 				<input type="file" onChange={changeHandler} style={{ display: 'none '}} name="upload-photo" id="upload-photo" />
-                <Fab size="medium" color="primary" component="span" aria-label="add">
+                <Fab size="medium" color="secondary" component="span" aria-label="add">
                     <AddIcon />
                 </Fab>
 			</label>

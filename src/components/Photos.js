@@ -15,10 +15,6 @@ const useStyles = makeStyles({
 	main: {
 		flexGrow: '1',
 	},
-	month: {
-		paddingTop: '3rem',
-		paddingBottom: '1rem'
-	},
 });
 
 const Photos = () => {
@@ -31,9 +27,6 @@ const Photos = () => {
 				Photo Gallery
 			</Typography>
 			{isLoggedIn ? <UploadForm /> : ''}
-			<Typography variant="h6" className={classes.month}>
-				December 2020
-			</Typography>
 			<ImageGrid />
 		</Container>
 	);
