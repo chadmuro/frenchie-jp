@@ -30,7 +30,8 @@ const useStyles = makeStyles({
 	navigation: {
 		display: 'flex',
 		justifyContent: 'center',
-	}
+		alignItems: 'center'
+	},
 });
 
 const Header = () => {
@@ -166,13 +167,15 @@ const Header = () => {
 							</>
 						)}
 						{isLoggedIn && (
-							<Button
-								variant="contained"
-								color="secondary"
-								onClick={handleLogout}
-							>
-								Logout
-							</Button>
+							<Link to="/" className={classes.link}>
+								<Button
+									variant="contained"
+									color="secondary"
+									onClick={handleLogout}
+								>
+									Logout
+								</Button>
+							</Link>
 						)}
 					</div>
 				</Toolbar>

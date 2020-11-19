@@ -14,8 +14,9 @@ const useStyles = makeStyles({
 	container: {
 		backgroundColor: '#fff',
 		outline: 'none',
-		maxHeight: '1000px',
+		maxHeight: '100%',
 		maxWidth: '500px',
+		overflowY: 'auto',
 		textAlign: 'center',
 		padding: '1rem',
 		paddingTop: '3rem',
