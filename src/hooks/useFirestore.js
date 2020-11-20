@@ -45,6 +45,8 @@ export const dbSignUp = newUser => {
 		frenchieName: newUser.frenchieName,
 		likedPhotos: [],
 		eventsJoined: [],
+		location: '',
+		biography: ''
 	});
 };
 
