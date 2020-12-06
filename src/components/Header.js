@@ -17,10 +17,10 @@ import LoginModal from './users/LoginModal';
 import { authLogout } from '../hooks/useAuth';
 import { AuthContext } from '../contexts/AuthContext';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
 	link: {
 		textDecoration: 'none',
-		color: '#220A03',
+		color: theme.palette.text.primary,
 	},
 	title: {
 		flexGrow: 1,
@@ -30,9 +30,10 @@ const useStyles = makeStyles({
 	navigation: {
 		display: 'flex',
 		justifyContent: 'center',
-		alignItems: 'center'
+		alignItems: 'center',
+		width: '100%'
 	},
-});
+}));
 
 const Header = () => {
 	const classes = useStyles();
@@ -71,9 +72,6 @@ const Header = () => {
 		<div>
 			<AppBar position="sticky">
 				<Toolbar>
-					<Link to="/" className={classes.title}>
-						<Typography variant="h6">Tokyo Frenchies</Typography>
-					</Link>
 					<div className={classes.navigation}>
 						{isMobile ? (
 							<>
@@ -125,9 +123,15 @@ const Header = () => {
 										</Link>
 									</MenuItem>
 								</Menu>
+								<Link to="/" className={classes.title}>
+									<Typography variant="h6">Tokyo Frenchies</Typography>
+								</Link>
 							</>
 						) : (
 							<>
+								<Link to="/" className={classes.title}>
+									<Typography variant="h6">Tokyo Frenchies</Typography>
+								</Link>
 								<Link to="/" className={classes.link}>
 									<Button>Home</Button>
 								</Link>

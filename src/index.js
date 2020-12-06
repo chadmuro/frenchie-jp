@@ -6,10 +6,10 @@ import App from './components/App';
 const theme = createMuiTheme({
 	palette: {
 		primary: {
-			main: '#ff7043',
+			main: '#6d4c41',
 		},
 		secondary: {
-			main: '#8c9eff',
+			main: '#eb5756',
 		},
 	},
 });

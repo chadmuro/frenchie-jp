@@ -39,7 +39,7 @@ const UserProfile = () => {
 				<Card className={classes.card}>
 					<CardContent>
 						<div className={classes.cardTitle}>
-							<Typography variant="h4" color="primary">
+							<Typography variant="h4" color="secondary">
 								{frenchieName}
 							</Typography>
 							<Typography variant="h6">
