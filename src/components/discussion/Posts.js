@@ -6,7 +6,7 @@ const Posts = () => {
 	const { docs } = useFirestore('posts', 'createdAt');
 
 	return (
-		<Grid item xs={12} sm={8}>
+		<Grid item xs={12}>
 			{docs &&
 				docs.map(post => {
 					return (

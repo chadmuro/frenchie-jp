@@ -9,7 +9,6 @@ import { makeStyles } from '@material-ui/styles';
 import { AuthContext } from '../../contexts/AuthContext';
 import NewPostModal from './NewPostModal';
 import Posts from './Posts';
-import Notifications from './Notifications';
 
 const useStyles = makeStyles({
 	main: {
@@ -62,7 +61,6 @@ const Discussion = () => {
 				{isLoggedIn ? (
 					<Grid container spacing={4} className={classes.container}>
 					<Posts />
-					<Notifications />
 				</Grid>
 				) : (
 					<Typography align="center" color="error" className={classes.container}>Sign up or login to view discussions</Typography>
