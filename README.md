@@ -1,11 +1,10 @@
-# Tokyo Frenchies
-
+# Tokyo Frenchies :dog:
 Tokyo Frenchies is a meetup event website for French Bulldogs and their owners in Tokyo.
 
-## Events
-
-We host events year round for our frenchies to meet and play.
+## Built With
+- React, Hooks, Context API
+- Material-UI
+- Firebase - Authentication, Firestore, Cloud Functions
 
 ## Join us now!
-
-Website coming soon...
+https://tokyo-frenchies.web.app/
