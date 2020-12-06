@@ -9,13 +9,18 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import { useFirestore, GetUserInfo, likePhotoFirestore, unlikePhotoFirestore } from '../../hooks/useFirestore';
+import {
+	useFirestore,
+	GetUserInfo,
+	likePhotoFirestore,
+	unlikePhotoFirestore,
+} from '../../hooks/useFirestore';
 import { AuthContext } from '../../contexts/AuthContext';
 
 const useStyles = makeStyles({
 	gridList: {
 		minHeight: '250px',
-		marginTop: '20px'
+		marginTop: '20px',
 	},
 	titleBar: {
 		background:
@@ -25,8 +30,8 @@ const useStyles = makeStyles({
 		color: 'white',
 	},
 	iconLiked: {
-		color: '#ff0000'
-	}
+		color: '#ff0000',
+	},
 });
 
 const ImageGrid = () => {
@@ -53,7 +58,10 @@ const ImageGrid = () => {
 								<GridListTileBar
 									titlePosition="top"
 									actionIcon={
-										<IconButton className={classes.iconLiked} onClick={() => unlikePhotoFirestore(isLoggedIn, image.id)}>
+										<IconButton
+											className={classes.iconLiked}
+											onClick={() => unlikePhotoFirestore(isLoggedIn, image.id)}
+										>
 											<FavoriteIcon />
 										</IconButton>
 									}
