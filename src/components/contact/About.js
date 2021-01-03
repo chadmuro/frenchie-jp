@@ -6,8 +6,8 @@ import {
 	Typography,
 	CardMedia,
 	CardContent,
+	makeStyles,
 } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 import ipu from '../../img/ipu.jpg';
 
 const useStyles = makeStyles({
@@ -16,8 +16,8 @@ const useStyles = makeStyles({
 		paddingBottom: '3rem',
 	},
 	image: {
-		height: '300px'
-	}
+		height: '300px',
+	},
 });
 
 const About = () => {
@@ -31,13 +31,17 @@ const About = () => {
 			<Card>
 				<Grid container>
 					<Grid item xs={12} sm={4}>
-						<CardMedia image={ipu} title="Ipu Frenchie" className={classes.image}/>
+						<CardMedia
+							image={ipu}
+							title="Ipu Frenchie"
+							className={classes.image}
+						/>
 					</Grid>
 					<Grid item xs={12} sm={8}>
 						<CardContent>
 							<Typography align="center">
-								We are a community of French Bulldogs and owners in Tokyo, Japan. 
-								Japanese or English speaking is okay. Come join us!
+								We are a community of French Bulldogs and owners in Tokyo,
+								Japan. Japanese or English speaking is okay. Come join us!
 							</Typography>
 						</CardContent>
 					</Grid>

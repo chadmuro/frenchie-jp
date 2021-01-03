@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
-import App from './components/App';
+import App from './App';
 
 const theme = createMuiTheme({
 	palette: {
@@ -16,7 +17,9 @@ const theme = createMuiTheme({
 
 ReactDOM.render(
 	<ThemeProvider theme={theme}>
-		<App />
+		<BrowserRouter>
+			<App />
+		</BrowserRouter>
 	</ThemeProvider>,
 	document.querySelector('#root')
 );

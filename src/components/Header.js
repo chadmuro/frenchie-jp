@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
 import {
 	AppBar,
 	Toolbar,
@@ -9,6 +8,8 @@ import {
 	IconButton,
 	Menu,
 	MenuItem,
+	makeStyles,
+	useTheme,
 } from '@material-ui/core';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import MenuIcon from '@material-ui/icons/Menu';
